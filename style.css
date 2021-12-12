@@ -1,8 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@500&display=swap');
 
+:root {
+    --light: #FFF;
+    --dark: #222222;
+    --box: #FFF;
+    --background: var(--light);
+    --foreground: var(--dark);
+}
+
+.darkmode {
+    --light: #FFF;
+    --dark: #222222;
+    --box: #303030;
+    --background: var(--dark);
+    --foreground: var(--light);
+}
+
 body {
-    background-color: #181735;
-    color: white;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: .3s;
 }
 
 .container {
@@ -22,13 +39,53 @@ body {
 }
 
 .coin-detail {
-    background-color: #1f1e3e;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    background-color: var(--box);
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
     border-radius: 4px;
     font-family: Oswald;
     font-size: 20px;
     padding: 15px;
     margin: 10px;
+}
+
+.icon {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.symbol-name {
+    display: flex;
+}
+
+.last-price {
+    display: flex;
+}
+
+.market-cap {
+    display: flex;
+}
+
+.supply {
+    display: flex;
+}
+
+.price-change {
+    display: flex;
+}
+
+.positive {
+    color: rgb(49, 199, 109);
+}
+
+.negative {
+    color: rgb(199 49 49);
+}
+
+.coin-buttons {
+    display: flex;
 }
 
 .watch-area {
@@ -37,12 +94,30 @@ body {
     justify-content: center;
 }
 
+.favorite {
+    background-color: #2a96e9;
+    color: white;
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 19px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.favorite:hover {
+    background-color: #222222;
+    color: white;
+}
+
 .watch-box {
     display: grid;
     justify-content: center;
     flex-direction: column;
-    background-color: #1f1e3e;
-    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    background-color: var(--box);
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
     border-radius: 4px;
     font-family: Oswald;
     font-size: 20px;
@@ -59,3 +134,38 @@ body {
     margin: 10px;
     padding: 15px;
 }
+
+.graph {
+    background-color: #4ed54e;
+    color: white;
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 19px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.graph:hover {
+    background-color: #222222;
+    color: white;
+}
+
+
+/* dark mode */
+.dark-mode-toggle {
+    position: absolute;
+    z-index: 100;
+    top: 2em;
+    right: 47em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+  }
