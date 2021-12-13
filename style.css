@@ -49,10 +49,51 @@ body {
     margin: 10px;
 }
 
+.labels {
+    display: flex;
+    font-family: Oswald;
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+}
+
+/* headings */
+.name-heading {
+    display: flex;
+    width: 200px;
+}
+
+.price-heading {
+    display: flex;
+    width: 120px;
+}
+
+.market-heading {
+    display: flex;
+    width: 120px;
+}
+
+.supply-heading {
+    display: flex;
+    width: 120px;
+}
+
+.change-heading {
+    display: flex;
+    width: 120px;
+}
+
 .icon {
     display: flex;
     width: 35px;
     height: 35px;
+    border-radius: 50%;
+}
+
+.icon-favorite {
+    display: flex;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
 }
 
@@ -94,6 +135,19 @@ body {
     justify-content: center;
 }
 
+.watch-box {
+    display: grid;
+    justify-content: center;
+    background-color: var(--box);
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
+    border-radius: 4px;
+    font-family: Oswald;
+    font-size: 20px;
+    height: 70px;
+    margin: 10px;
+    padding: 15px;
+}
+
 .favorite {
     background-color: #2a96e9;
     color: white;
@@ -110,20 +164,6 @@ body {
 .favorite:hover {
     background-color: #222222;
     color: white;
-}
-
-.watch-box {
-    display: grid;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--box);
-    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
-    border-radius: 4px;
-    font-family: Oswald;
-    font-size: 20px;
-    height: 70px;
-    margin: 10px;
-    padding: 15px;
 }
 
 .graph-area {
@@ -168,4 +208,11 @@ body {
     border-radius: 5px;
     width: 30px;
     height: 30px;
-  }
+}
+
+.footer {
+    font-family: Roboto;
+    font-size: 15px;
+    text-align: center;
+    margin: 10px;
+}

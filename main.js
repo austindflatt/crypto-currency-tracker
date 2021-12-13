@@ -7,39 +7,36 @@ const graphDisplay = document.createElement('div');
 const coinArea = document.querySelector('#coin-area');
 const coinList = document.createElement('div');
 
-
 async function myFunction() {
     const httpResponse = await fetch('https://api.coincap.io/v2/assets');
     const data = await httpResponse.json();
     const coins = data.data;
 
+    const bitcoin = [];
+
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
         console.log(coinInfo);
-        coinName = coinInfo.name;
-        price = coinInfo.priceUsd;
         symbol = coinInfo.symbol;
-        change = coinInfo.changePercent24Hr;
-        marketCap = coinInfo.marketCapUsd;
-        supply = coinInfo.supply;
         coinIcon = symbol.toLowerCase();
-        const singleCoin = `<div class="coin-detail">
+        const singleCoin = `
+        <div class="coin-detail">
         <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon">
         <div class="symbol-name">
         ${coins[i].symbol} ${coins[i].name}
         </div>
         <div class="last-price">
-        Last Price: $${coins[i].priceUsd}
+        $${coins[i].priceUsd}
         </div>
         <div class="market-cap">
-        Market Cap: ${coins[i].marketCapUsd}
+        ${coins[i].marketCapUsd}
         </div>
         <div class="supply">
-        Supply: ${coins[i].supply}
+        ${coins[i].supply}
         </div>
         <div class="price-change">
-        <span class="positive">24h Change: ${coins[i].changePercent24Hr}</span>
+        <span class="positive">${coins[i].changePercent24Hr}%</span>
         </div>
         <div class="coin-buttons">
         <button class="graph" onclick="window.scrollTo(0, 0);">
@@ -60,18 +57,22 @@ async function myFunction() {
 
     // add to watchlist
     const watchListClick = document.querySelectorAll('.favorite');
-    watchListClick.forEach(element =>
+    watchListClick.forEach((element, index) =>
         element.addEventListener('click', function() {
-            console.log('added to watchlist');
-            watchList.innerHTML = `
+            const crypto = coins[index];
+            const coinIcon = crypto.symbol.toLowerCase();
+            console.log('added to watchlist', crypto);
+            const singleWatch = `
             <div class="watch-box">
-            ${symbol}
-            ${coinName}
+            <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon-favorite">
+            ${crypto.symbol}
+            ${crypto.name}
             <br />
-            $${price}
-            24h Change: ${change}
+            $${crypto.priceUsd}
+            24h Change: ${crypto.changePercent24Hr}
             </div>
             `;
+            watchList.innerHTML += singleWatch;
             watchArea.append(watchList);
         })
         );
@@ -122,3 +123,20 @@ darkModeToggle.addEventListener('click', function() {
         disableDarkMode(); 
     }
 });
+
+// function to shorten values
+let abbr = ['k', 'm', 'b', 't'];
+
+function round(num, precision) {
+    let prec = Math.pow(10, precision);
+    return Math.round(num*prec)/prec;
+}
+
+function abbreviate(num) {
+    let base = Math.floor(Math.log(Math.abs(num))/Math.log(1000));
+    let suffix = abbr[Math.min(2, base - 1)];
+    base = abbr.indexOf(suffix) + 1;
+    return suffix ? round(num/Math.pow(1000,base),2)+suffix : ''+num;
+};
+
+console.log((abbreviate(474321.9286896585568694)));
