@@ -11,15 +11,24 @@ async function myFunction() {
     const httpResponse = await fetch('https://api.coincap.io/v2/assets');
     const data = await httpResponse.json();
     const coins = data.data;
-
-    const bitcoin = [];
-
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
         console.log(coinInfo);
         symbol = coinInfo.symbol;
         coinIcon = symbol.toLowerCase();
+        // abbreviate prices
+        let price = coinInfo.priceUsd;
+        let fixedPrice = (abbreviate(price));
+        // abbreviate market cap
+        let marketCap = coinInfo.marketCapUsd;
+        let fixedMarket = (abbreviate(marketCap));
+        // abbreviate supply
+        let supply = coinInfo.supply
+        let fixedSupply = (abbreviate(supply));
+        // abbreviate 24h change
+        let change = coinInfo.changePercent24Hr;
+        let fixedChange = round(change);
         const singleCoin = `
         <div class="coin-detail">
         <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon">
@@ -27,16 +36,16 @@ async function myFunction() {
         ${coins[i].symbol} ${coins[i].name}
         </div>
         <div class="last-price">
-        $${coins[i].priceUsd}
+        $${fixedPrice}
         </div>
         <div class="market-cap">
-        ${coins[i].marketCapUsd}
+        $${fixedMarket}
         </div>
         <div class="supply">
-        ${coins[i].supply}
+        ${fixedSupply}
         </div>
         <div class="price-change">
-        <span class="positive">${coins[i].changePercent24Hr}%</span>
+        <span class="positive">${fixedChange}%</span>
         </div>
         <div class="coin-buttons">
         <button class="graph" onclick="window.scrollTo(0, 0);">
@@ -60,6 +69,8 @@ async function myFunction() {
     watchListClick.forEach((element, index) =>
         element.addEventListener('click', function() {
             const crypto = coins[index];
+            let price = crypto.priceUsd;
+            let fixedPrice = (abbreviate(price));
             const coinIcon = crypto.symbol.toLowerCase();
             console.log('added to watchlist', crypto);
             const singleWatch = `
@@ -68,7 +79,7 @@ async function myFunction() {
             ${crypto.symbol}
             ${crypto.name}
             <br />
-            $${crypto.priceUsd}
+            $${fixedPrice}
             24h Change: ${crypto.changePercent24Hr}
             </div>
             `;
@@ -139,4 +150,8 @@ function abbreviate(num) {
     return suffix ? round(num/Math.pow(1000,base),2)+suffix : ''+num;
 };
 
-console.log((abbreviate(474321.9286896585568694)));
+// to round 24hr change
+function round(num) {
+    let number = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(number) / 100 * Math.sign(num);
+}

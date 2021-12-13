@@ -19,6 +19,7 @@
 body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: Roboto;
     transition: .3s;
 }
 
@@ -54,18 +55,33 @@ body {
     font-family: Oswald;
     font-size: 20px;
     padding: 15px;
-    margin: 10px;
+}
+
+/* buttons */
+.reset-button-area {
+    
+}
+.reset-button {
+    background-color: #df4242;
+    color: var(--background);
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 19px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
 }
 
 /* headings */
 .name-heading {
     display: flex;
-    width: 200px;
+    width: 245px;
 }
 
 .price-heading {
     display: flex;
-    width: 120px;
+    width: 300px;
 }
 
 .market-heading {
@@ -99,22 +115,28 @@ body {
 
 .symbol-name {
     display: flex;
+    width: 200px;
+    margin-left: 5px;
 }
 
 .last-price {
     display: flex;
+    width: 300px;
 }
 
 .market-cap {
     display: flex;
+    width: 120px;
 }
 
 .supply {
     display: flex;
+    width: 120px;
 }
 
 .price-change {
     display: flex;
+    width: 260px;
 }
 
 .positive {
@@ -126,13 +148,14 @@ body {
 }
 
 .coin-buttons {
-    display: flex;
+    align-content: right;
 }
 
 .watch-area {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
+    padding: 15px;
 }
 
 .watch-box {
@@ -196,18 +219,15 @@ body {
 
 /* dark mode */
 .dark-mode-toggle {
-    position: absolute;
-    z-index: 100;
-    top: 2em;
-    right: 47em;
-    color: var(--foreground);
-    border: 2px solid currentColor;
-    padding: 4px;
-    background: transparent;
+    background-color: var(--foreground);
+    color: var(--background);
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 19px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
-    width: 30px;
-    height: 30px;
+    transition: .3s;
 }
 
 .footer {
