@@ -71,6 +71,9 @@ async function myFunction() {
             const crypto = coins[index];
             let price = crypto.priceUsd;
             let fixedPrice = (abbreviate(price));
+            // abbreviate 24h change
+            let change = crypto.changePercent24Hr;
+            let fixedChange = round(change);
             const coinIcon = crypto.symbol.toLowerCase();
             console.log('added to watchlist', crypto);
             const singleWatch = `
@@ -80,7 +83,7 @@ async function myFunction() {
             ${crypto.name}
             <br />
             $${fixedPrice}
-            24h Change: ${crypto.changePercent24Hr}
+            24h Change: <span class="positive">${fixedChange}%</span>
             </div>
             `;
             watchList.innerHTML += singleWatch;
@@ -95,7 +98,7 @@ async function myFunction() {
             window.scrollTo(0, 0);
             console.log('this will show the graph!');
             graphDisplay.innerHTML = `
-            <div class="graph-box">
+            <div class="graph-box" id="id-scroll">
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
             `;
