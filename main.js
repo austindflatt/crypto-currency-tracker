@@ -77,28 +77,32 @@ async function myFunction() {
             const coinIcon = crypto.symbol.toLowerCase();
             console.log('added to watchlist', crypto);
             const singleWatch = `
-            <div class="watch-box">
-            <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon-favorite">
-            ${crypto.symbol}
-            ${crypto.name}
-            <br />
-            $${fixedPrice}
-            24h Change: <span class="positive">${fixedChange}%</span>
+            <div class="watch-box" data-aos="fade-up">
+                ${crypto.symbol}
+                ${crypto.name}
+                <br />
+                $${fixedPrice}
+                <span class="positive">${fixedChange}%</span>
             </div>
             `;
-            watchList.innerHTML += singleWatch;
-            watchArea.append(watchList);
+            for(i = 0; i < 1; i++) {
+                watchArea.append(watchList);
+                watchList.innerHTML += singleWatch;
+            }
         })
         );
 
     // show graph
     const graphClick = document.querySelectorAll('.graph');
-    graphClick.forEach(element =>
+    graphClick.forEach((element, index) =>
         element.addEventListener('click', function() {
             window.scrollTo(0, 0);
+            const crypto = coins[index];
+            let price = crypto.priceUsd;
             console.log('this will show the graph!');
             graphDisplay.innerHTML = `
             <div class="graph-box" id="id-scroll">
+            ${price}
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
             `;

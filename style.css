@@ -58,6 +58,10 @@ body {
 }
 
 /* buttons */
+.header-buttons {
+    display: flex;
+}
+
 .reset-button-area {
     
 }
@@ -70,6 +74,7 @@ body {
     font-size: 19px;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 5px;
     transition: .3s;
 }
 
@@ -108,8 +113,8 @@ body {
 
 .icon-favorite {
     display: flex;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -151,24 +156,28 @@ body {
     align-content: right;
 }
 
-.watch-area {
+.items-title {
+    padding: 15px;
+}
+
+.watch-area > div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    padding: 15px;
+    position: relative;
 }
 
 .watch-box {
     display: grid;
-    justify-content: center;
+    flex-direction: column;
     background-color: var(--box);
     box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
     border-radius: 4px;
     font-family: Oswald;
     font-size: 20px;
-    height: 70px;
     margin: 10px;
     padding: 15px;
+    overflow: hidden;
 }
 
 .favorite {
