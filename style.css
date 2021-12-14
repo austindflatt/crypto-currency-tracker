@@ -245,3 +245,15 @@ body {
     text-align: center;
     margin: 10px;
 }
+
+.clear {
+    background-color: #fc3535a1;
+    cursor: default;
+    transition: .3s;
+    pointer-events: none;
+}
+
+.clear:hover {
+    background-color: #fc3535a1;
+    pointer-events: none;
+}

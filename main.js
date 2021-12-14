@@ -1,6 +1,8 @@
 const watchArea = document.querySelector('#watch-area');
 const watchList = document.createElement('div');
 
+const savedCrypto = [];
+
 const showGraph = document.querySelector('#show-graph');
 const graphDisplay = document.createElement('div');
 
@@ -14,7 +16,6 @@ async function myFunction() {
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
-        console.log(coinInfo);
         symbol = coinInfo.symbol;
         coinIcon = symbol.toLowerCase();
         // abbreviate prices
@@ -64,6 +65,9 @@ async function myFunction() {
         coinArea.append(coinList);
     }
 
+    // disable click
+    let clicked = false;
+
     // add to watchlist
     const watchListClick = document.querySelectorAll('.favorite');
     watchListClick.forEach((element, index) =>
@@ -75,7 +79,6 @@ async function myFunction() {
             let change = crypto.changePercent24Hr;
             let fixedChange = round(change);
             const coinIcon = crypto.symbol.toLowerCase();
-            console.log('added to watchlist', crypto);
             const singleWatch = `
             <div class="watch-box" data-aos="fade-up">
                 ${crypto.symbol}
@@ -85,10 +88,15 @@ async function myFunction() {
                 <span class="positive">${fixedChange}%</span>
             </div>
             `;
-            for(i = 0; i < 1; i++) {
-                watchArea.append(watchList);
-                watchList.innerHTML += singleWatch;
-            }
+
+            element.classList.add('clear');
+
+            watchArea.append(watchList);
+            watchList.innerHTML += singleWatch;
+
+            savedCrypto.push(crypto.name);
+            console.log(savedCrypto);
+
         })
         );
 
