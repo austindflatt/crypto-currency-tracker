@@ -17,6 +17,7 @@ async function myFunction() {
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
+        coinName = coinInfo.name;
         symbol = coinInfo.symbol;
         coinIcon = symbol.toLowerCase();
         // abbreviate prices
@@ -64,11 +65,12 @@ async function myFunction() {
         </div>`
         coinList.innerHTML += singleCoin
         coinArea.append(coinList);
-        // for local storage //
+        // for local storage: this is where everything is stored and displayed on the page //
         const savedCoinName = localStorage.getItem('savedCoinName');
         const singleWatch = `
             <div class="watch-box" data-aos="fade-up">
                 ${symbol}
+                ${coinName}
                 <br />
                 $${fixedPrice}
                 <span class="positive">${fixedChange}%</span>
