@@ -2,6 +2,7 @@ const watchArea = document.querySelector('#watch-area');
 const watchList = document.createElement('div');
 
 const savedCrypto = [];
+const reset = document.querySelector('#reset');
 
 const showGraph = document.querySelector('#show-graph');
 const graphDisplay = document.createElement('div');
@@ -63,15 +64,29 @@ async function myFunction() {
         </div>`
         coinList.innerHTML += singleCoin
         coinArea.append(coinList);
+        // for local storage //
+        const savedCoinName = localStorage.getItem('savedCoinName');
+        const singleWatch = `
+            <div class="watch-box" data-aos="fade-up">
+                ${symbol}
+                <br />
+                $${fixedPrice}
+                <span class="positive">${fixedChange}%</span>
+            </div>
+            `;
+            console.log(savedCoinName);
+        if(coins[i].name === savedCoinName) {
+            console.log(savedCoinName);
+            watchArea.append(watchList);
+            watchList.innerHTML += singleWatch;
+        }
     }
-
-    // disable click
-    let clicked = false;
 
     // add to watchlist
     const watchListClick = document.querySelectorAll('.favorite');
     watchListClick.forEach((element, index) =>
-        element.addEventListener('click', function() {
+        element.addEventListener('click', function(event) {
+            event.preventDefault();
             const crypto = coins[index];
             let price = crypto.priceUsd;
             let fixedPrice = (abbreviate(price));
@@ -97,8 +112,15 @@ async function myFunction() {
             savedCrypto.push(crypto.name);
             console.log(savedCrypto);
 
+            localStorage.setItem('savedCoinName', crypto.name);
         })
         );
+
+    //reset everything
+    reset.addEventListener('click', function(event) {
+        localStorage.removeItem('savedCoinName');
+        location.reload();
+    })
 
     // show graph
     const graphClick = document.querySelectorAll('.graph');
