@@ -76,9 +76,7 @@ async function myFunction() {
                 <span class="positive">${fixedChange}%</span>
             </div>
             `;
-            console.log(savedCoinName);
         if(coins[i].name === savedCoinName) {
-            console.log(savedCoinName);
             watchArea.append(watchList);
             watchList.innerHTML += singleWatch;
         }
