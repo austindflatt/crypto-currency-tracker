@@ -14,9 +14,18 @@ async function myFunction() {
     const httpResponse = await fetch('https://api.coincap.io/v2/assets');
     const data = await httpResponse.json();
     const coins = data.data;
+    // empty arrays for graph
+    const nameList = [];
+    const changeList = [];
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
+        //push data to empty arrays for graph
+        nameList.push(coinInfo.name);
+        changeList.push(coinInfo.changePercent24Hr);
+        console.log(nameList);
+        console.log(changeList);
+        //
         coinName = coinInfo.name;
         symbol = coinInfo.symbol;
         coinIcon = symbol.toLowerCase();
@@ -51,7 +60,7 @@ async function myFunction() {
         <span class="positive">${fixedChange}%</span>
         </div>
         <div class="coin-buttons">
-        <button class="graph" onclick="window.scrollTo(0, 0);">
+        <button class="graph" onclick="#get-graph" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
             </svg>
@@ -125,22 +134,36 @@ async function myFunction() {
     // show graph
     const graphClick = document.querySelectorAll('.graph');
     graphClick.forEach((element, index) =>
-        element.addEventListener('click', function() {
+        element.addEventListener('click', function(event) {
             window.scrollTo(0, 0);
             const crypto = coins[index];
             let price = crypto.priceUsd;
             console.log('this will show the graph!');
-            graphDisplay.innerHTML = `
-            <div class="graph-box" id="id-scroll">
-            ${price}
-                <canvas id="myChart" width="400" height="400"></canvas>
-            </div>
-            `;
-            showGraph.append(graphDisplay);
+            document.getElementById('get-graph').style.display = "block";
         })
         );
     
     // graph data
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: nameList,
+            datasets: [{
+                label: 'Negative',
+                data: nameList,
+                backgroundColor: [
+                    '#c73131'
+                ]
+            },{
+                label: 'Positive',
+                data: changeList,
+                backgroundColor: [
+                    '#31c76d'
+                ]
+            }]
+        },
+    });
 };
 
 myFunction();
