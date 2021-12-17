@@ -162,7 +162,7 @@ async function myFunction() {
                     '#31c76d'
                 ]
             }]
-        },
+        }
     });
 };
 

@@ -186,7 +186,9 @@ a:hover {
 @media (max-width: 640px) {
     .watch-area > div {
         display: grid;
-        grid-template-columns: none;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        position: relative;
     }
 }
 
