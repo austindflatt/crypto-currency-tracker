@@ -6,7 +6,7 @@ This project is a web application that allows the user to track different crypto
 
 * Displaying crypto currencies along with the USD Price, Market Cap, Supply, and 24 hour change percentage.
 * Allowing the user to add a selected crypto currency to watchlist and save it to local storage.
-* Allowing the user to see a chart of the selected crypto currency.
+* Allowing the user to see a chart of the selected crypto currency 24 hour change percentage.
 
 ![webapp](https://raw.githubusercontent.com/austindflatt/crypto-currency-tracker/main/crypto-tracker.png)
 
