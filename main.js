@@ -41,6 +41,12 @@ async function myFunction() {
         // abbreviate 24h change
         let change = coinInfo.changePercent24Hr;
         let fixedChange = round(change);
+        let valueColor;
+        if(fixedChange < 0) {
+            valueColor = 'negative';
+        } else {
+            valueColor = 'positive';
+        }
         const singleCoin = `
         <div class="coin-detail">
         <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon">
@@ -57,7 +63,7 @@ async function myFunction() {
         ${fixedSupply}
         </div>
         <div class="price-change">
-        <span class="positive">${fixedChange}%</span>
+        <span class="${valueColor}">${fixedChange}%</span>
         </div>
         <div class="coin-buttons">
         <button class="graph" onclick="#get-graph" type="button">
@@ -82,7 +88,7 @@ async function myFunction() {
                 ${coinName}
                 <br />
                 $${fixedPrice}
-                <span class="positive">${fixedChange}%</span>
+                <span class="${valueColor}">${fixedChange}%</span>
             </div>
             `;
         if(coins[i].name === savedCoinName) {
@@ -102,6 +108,12 @@ async function myFunction() {
             // abbreviate 24h change
             let change = crypto.changePercent24Hr;
             let fixedChange = round(change);
+            let valueColor;
+            if(fixedChange < 0) {
+                valueColor = 'negative';
+            } else {
+                valueColor = 'positive';
+            }
             const coinIcon = crypto.symbol.toLowerCase();
             const singleWatch = `
             <div class="watch-box" data-aos="fade-up">
@@ -109,7 +121,7 @@ async function myFunction() {
                 ${crypto.name}
                 <br />
                 $${fixedPrice}
-                <span class="positive">${fixedChange}%</span>
+                <span class="${valueColor}">${fixedChange}%</span>
             </div>
             `;
 
