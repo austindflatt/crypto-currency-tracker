@@ -1,6 +1,6 @@
 # Crypto Currency Tracker
 
-This project is a web application that allows the user to track different crypto currencies. A user is able to add crypto currencies to their watchlist and it is saved to local storage. The user also has the option to view a chart of a selected crypto currency.
+This project is a web application that allows the user to track different crypto currencies. A user is able to add crypto currencies to their watchlist and it is saved to local storage. The user also has the option to view a chart of a selected crypto currency 24 hour change.
 
 ## Features
 
