@@ -20,7 +20,7 @@ async function myFunction() {
     // loop through crypto coins
     for(i = 0; i < coins.length; i++) {
         coinInfo = coins[i];
-        //push data to empty arrays for graph
+        //push data to empty arrays for chart
         nameList.push(coinInfo.name);
         changeList.push(coinInfo.changePercent24Hr);
         console.log(nameList);
@@ -51,7 +51,7 @@ async function myFunction() {
         <div class="coin-detail">
         <img src="https://assets.coincap.io/assets/icons/${coinIcon}@2x.png" class="icon">
         <div class="symbol-name">
-        ${coins[i].symbol} ${coins[i].name}
+        ${coins[i].symbol} <div class="coin-title">${coins[i].name}</div>
         </div>
         <div class="last-price">
         $${fixedPrice}

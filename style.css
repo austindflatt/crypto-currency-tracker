@@ -110,9 +110,21 @@ a:hover {
     width: 120px;
 }
 
+@media (max-width: 639px) {
+    .market-heading {
+        display: none;
+    }
+}
+
 .supply-heading {
     display: flex;
     width: 120px;
+}
+
+@media (max-width: 639px) {
+    .supply-heading {
+        display: none;
+    }
 }
 
 .change-heading {
@@ -134,6 +146,12 @@ a:hover {
     border-radius: 50%;
 }
 
+@media (max-width: 639px) {
+    .coin-title {
+        display: none;
+    }
+}
+
 .symbol-name {
     display: flex;
     width: 200px;
@@ -150,14 +168,32 @@ a:hover {
     width: 120px;
 }
 
+@media (max-width: 639px) {
+    .market-cap {
+        display: none;
+    }
+}
+
 .supply {
     display: flex;
     width: 120px;
 }
 
+@media (max-width: 639px) {
+    .supply {
+        display: none;
+    }
+}
+
 .price-change {
     display: flex;
     width: 260px;
+}
+
+@media (max-width: 639px) {
+    .price-change {
+        display: flex;
+    }
 }
 
 .positive {
@@ -170,6 +206,13 @@ a:hover {
 
 .coin-buttons {
     align-content: right;
+}
+
+@media (max-width: 639px) {
+    .coin-buttons {
+        display: flex;
+        width: 120px;
+    }
 }
 
 .items-title {
@@ -249,6 +292,11 @@ a:hover {
     color: white;
 }
 
+@media (max-width: 639px) {
+    .graph {
+        display: none;
+    }
+}
 
 /* dark mode */
 .dark-mode-toggle {
